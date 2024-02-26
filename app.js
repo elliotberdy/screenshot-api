@@ -7,8 +7,6 @@ const isValidUrlFormat = require("./captureScreenshot").isValidUrl;
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-const validUrl = require("valid-url");
-
 app.use(bodyParser.json());
 
 // Example Usage:
@@ -72,6 +70,10 @@ app.get("/v1/screenshot/fullpage", async (req, res) => {
   }
 });
 
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
+// app.listen(PORT, () => {
+//   console.log(`Server is running on http://localhost:${PORT}`);
+// });
+
+app.listen(10000, "0.0.0.0", () => {
+  console.log(`Server is running on http://0.0.0.0:10000`);
 });
