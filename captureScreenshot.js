@@ -1,4 +1,6 @@
 const puppeteer = require("puppeteer");
+const fs = require("fs");
+const sharp = require("sharp");
 
 async function captureScreenshot(url, fullpage = false) {
   const browser = await puppeteer.launch();
@@ -33,15 +35,4 @@ async function captureScreenshot(url, fullpage = false) {
   }
 }
 
-function isValidUrl(url) {
-  try {
-    // Try to parse the URL
-    new URL(url);
-    return true;
-  } catch (error) {
-    return false;
-  }
-}
-
 module.exports = captureScreenshot;
-module.exports.isValidUrl = isValidUrl;

@@ -2,7 +2,7 @@ const express = require("express");
 const puppeteer = require("puppeteer");
 const bodyParser = require("body-parser");
 const captureScreenshot = require("./captureScreenshot");
-const isValidUrlFormat = require("./captureScreenshot").isValidUrl;
+const isValidUrlFormat = require("./validURL");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -10,6 +10,9 @@ const PORT = process.env.PORT || 3000;
 app.use(bodyParser.json());
 
 // Example Usage:
+
+// http://0.0.0.0:10000/v1/screenshot/fullpage?url=https://www.airbnb.com/
+
 // GET request to http://localhost:3000/v1/screenshot?url=https://apiflash.com/documentation
 // GET request to http://localhost:3000/v1/screenshot/fullpage?url=https://apiflash.com/documentation
 
