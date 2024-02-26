@@ -4,21 +4,33 @@ async function captureScreenshot(url, fullpage = false) {
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
 
-  await page.goto(url);
-  let screenshotData;
-  if (fullpage) {
-    screenshotData = await page.screenshot({
-      encoding: "base64",
-      fullPage: true,
+  try {
+    await page.setViewport({
+      width: 1287,
+      height: 959,
+      deviceScaleFactor: 1,
     });
-  } else {
-    screenshotData = await page.screenshot({ encoding: "base64" });
+    await page.goto(url, { waitUntil: ["domcontentloaded", "networkidle2"] });
+
+    let screenshotData;
+    if (fullpage) {
+      screenshotData = await page.screenshot({
+        encoding: "base64",
+        fullPage: true,
+      });
+    } else {
+      screenshotData = await page.screenshot({ encoding: "base64" });
+    }
+
+    console.log("Screenshot data:", screenshotData);
+
+    return screenshotData;
+  } catch (error) {
+    console.error("Error capturing screenshot:", error);
+    return null; // Or handle the error as needed
+  } finally {
+    await browser.close();
   }
-
-  console.log("Screenshot data:", screenshotData);
-
-  await browser.close();
-  return screenshotData;
 }
 
 function isValidUrl(url) {
