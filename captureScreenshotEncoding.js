@@ -1,8 +1,6 @@
 const puppeteer = require("puppeteer");
-const fs = require("fs");
-const sharp = require("sharp");
 
-async function captureScreenshot(url, fullpage = false) {
+async function captureScreenshotEncoding(url, fullpage = false) {
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
 
@@ -10,9 +8,9 @@ async function captureScreenshot(url, fullpage = false) {
     await page.setViewport({
       width: 1287,
       height: 959,
-      deviceScaleFactor: 1,
     });
-    await page.goto(url, { waitUntil: ["domcontentloaded", "networkidle2"] });
+
+    await page.goto(url, { waitUntil: ["networkidle2", "load"] });
 
     let screenshotData;
     if (fullpage) {
@@ -35,4 +33,4 @@ async function captureScreenshot(url, fullpage = false) {
   }
 }
 
-module.exports = captureScreenshot;
+module.exports = captureScreenshotEncoding;

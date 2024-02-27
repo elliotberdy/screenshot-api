@@ -1,7 +1,8 @@
 const express = require("express");
 const puppeteer = require("puppeteer");
 const bodyParser = require("body-parser");
-const captureScreenshot = require("./captureScreenshot");
+const captureScreenshotEncoding = require("./captureScreenshotEncoding");
+const captureScreenshotURL = require("./captureScreenshotURL");
 const isValidUrlFormat = require("./validURL");
 
 const app = express();
@@ -34,7 +35,7 @@ app.get("/v1/screenshot", async (req, res) => {
   }
 
   try {
-    const screenshotData = await captureScreenshot(url, false);
+    const screenshotData = await captureScreenshotEncoding(url, false);
     res
       .status(200)
       .json({ message: "Screenshot captured successfully", screenshotData });
@@ -62,7 +63,7 @@ app.get("/v1/screenshot/fullpage", async (req, res) => {
   }
 
   try {
-    const screenshotData = await captureScreenshot(url, true);
+    const screenshotData = await captureScreenshotEncoding(url, true);
     res.status(200).json({
       message: "Full-page screenshot captured successfully",
       screenshotData,
@@ -73,9 +74,33 @@ app.get("/v1/screenshot/fullpage", async (req, res) => {
   }
 });
 
-// app.listen(PORT, () => {
-//   console.log(`Server is running on http://localhost:${PORT}`);
-// });
+app.get("/v1/screenshot/url", async (req, res) => {
+  const { url } = req.query;
+
+  if (!url) {
+    return res.status(400).json({
+      error: "URL parameter is required",
+      example: "Example: /v1/screenshot/url?url=https://example.com",
+    });
+  }
+
+  if (!isValidUrlFormat(url)) {
+    return res.status(400).json({
+      error: "Invalid URL format. URL must be a valid web URL.",
+      example: "Example: /v1/screenshot/url?url=https://example.com",
+    });
+  }
+
+  try {
+    const screenshotURL = await captureScreenshotURL(url, false);
+    res
+      .status(200)
+      .json({ message: "Screenshot captured successfully", screenshotURL });
+  } catch (error) {
+    console.error("Error capturing screenshot:", error);
+    res.status(500).json({ error: "Error capturing screenshot" });
+  }
+});
 
 app.listen(10000, "0.0.0.0", () => {
   console.log(`Server is running on http://0.0.0.0:10000`);
