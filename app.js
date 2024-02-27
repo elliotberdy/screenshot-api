@@ -102,6 +102,37 @@ app.get("/v1/screenshot/url", async (req, res) => {
   }
 });
 
+app.get("/v1/screenshot/fullpage/url", async (req, res) => {
+  const { url } = req.query;
+
+  if (!url) {
+    return res.status(400).json({
+      error: "URL parameter is required",
+      example: "Example: /v1/screenshot/fullpage/url?url=https://example.com",
+    });
+  }
+
+  if (!isValidUrlFormat(url)) {
+    return res.status(400).json({
+      error: "Invalid URL format. URL must be a valid web URL.",
+      example: "Example: /v1/screenshot/fullpage/url?url=https://example.com",
+    });
+  }
+
+  try {
+    const screenshotURL = await captureScreenshotURL(url, true);
+    res
+      .status(200)
+      .json({
+        message: "Fullpage screenshot captured successfully",
+        screenshotURL,
+      });
+  } catch (error) {
+    console.error("Error capturing fullpage screenshot:", error);
+    res.status(500).json({ error: "Error capturing fullpagge screenshot" });
+  }
+});
+
 app.listen(10000, "0.0.0.0", () => {
   console.log(`Server is running on http://0.0.0.0:10000`);
 });
