@@ -14,11 +14,11 @@ You can see a potential use case for this API at the following link: [https://br
 
 There are currently four available endpoints, each corresponding to either a regular of full page screenshot that either returns a base64 encoding of the image or a link to the image.
 
-### 1. Get url to regular screenshot
+### 1. Get url for regular screenshot
 
 > GET /v1/screenshot/url
 
-Retrieves a url to the screenshot of the passed in url website.
+Retrieves a url for the screenshot of the passed in url website.
 
 #### Request
 
@@ -47,11 +47,11 @@ Url of website to take screenshot of.
 | 400         | `{"error":"Invalid URL format. URL must be a valid web URL.","example":"Example: /v1/screenshot/url?url=https://example.com"}`                                 |
 | 500         | `{ "error": "Error capturing screenshot. Make sure url exists." }`                                                                                             |
 
-### 2. Get url to full page screenshot
+### 2. Get url for full page screenshot
 
 > GET /v1/screenshot/fullpage/url
 
-Retrieves a url to the fulll page screenshot of the passed in url website.
+Retrieves a url for the fulll page screenshot of the passed in url website.
 
 #### Request
 
