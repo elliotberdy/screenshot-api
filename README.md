@@ -2,11 +2,11 @@
 
 ## Summary
 
-Hi! This is a **screenshot API** that can be used to receive either a regular of full page screenshot of a given URL returned either as a base64 encoding or as a URL to a .png file stored in an AWS S3 bucket. It is in it's early stages of development still but I hope you get a chance to play around with it!
+Hi! This is a **screenshot API** that can be used to receive either a regular of full page screenshot of a given url returned either as a base64 encoding or as a url to a .png file stored in an AWS S3 bucket. It is in it's early stages of development still but I hope you get a chance to play around with it!
 
 The screenshot API uses Puppeteer to launch a browser instance, wait for the page and images to load, and then takes the screenshot.
 
-You can see a potential use case for this API at the following link: [https://browserbase-webapp.onrender.com/](https://browserbase-webapp.onrender.com/). This web app allows you to input a URL and visualize either the regular or full page screenshot in the browser, as well as the API response for that given request (note: this web app is using the endpoints that return a link to the screenshot).
+You can see a potential use case for this API at the following link: [https://browserbase-webapp.onrender.com/](https://browserbase-webapp.onrender.com/). This web app allows you to input a url and visualize either the regular or full page screenshot in the browser, as well as the API response for that given request (note: this web app is using the endpoints that return a link to the screenshot).
 
 ![Image](screenshot_api_webapp.png)
 
@@ -14,25 +14,25 @@ You can see a potential use case for this API at the following link: [https://br
 
 There are currently four available endpoints, each corresponding to either a regular of full page screenshot that either returns a base64 encoding of the image or a link to the image.
 
-### 1. Get URL for regular screenshot
+### 1. Get url for regular screenshot
 
-> GET /v1/screenshot/URL
+> GET /v1/screenshot/url
 
-Retrieves a URL for the screenshot of the passed in URL website.
+Retrieves a url for the screenshot of the passed in url website.
 
 ### Request
 
-    https://browserbase-work-trial.onrender.com/v1/screenshot/URL
+    https://browserbase-work-trial.onrender.com/v1/screenshot/url
 
 **cURL Request Example**
 
-    cURL -X GET "https://browserbase-work-trial.onrender.com/v1/screenshot/URL?URL=https://example.com/"
+    curl -X GET "https://browserbase-work-trial.onrender.com/v1/screenshot/url?url=https://example.com/"
 
 **Query parameters**
 
-**URL** | string (_required_)  
+**url** | string (_required_)  
 Example: https://example.com/  
-URL of website to take screenshot of.
+Url of website to take screenshot of.
 
 ### Responses
 
@@ -43,29 +43,29 @@ URL of website to take screenshot of.
 | Status Code | Response Examples                                                                                                                                              |
 | ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | 200         | `{"message":"Screenshot captured successfully","screenshotURL":"https://api-screenshots-browserbase.s3.us-west-2.amazonaws.com/screenshot-1709150937398.png"}` |
-| 400         | `{"error":"URL parameter is required","example":"Example: /v1/screenshot/URL?URL=https://example.com"}`                                                        |
-| 400         | `{"error":"Invalid URL format. URL must be a valid web URL.","example":"Example: /v1/screenshot/URL?URL=https://example.com"}`                                 |
-| 500         | `{ "error": "Error capturing screenshot. Make sure URL exists." }`                                                                                             |
+| 400         | `{"error":"URL parameter is required","example":"Example: /v1/screenshot/url?url=https://example.com"}`                                                        |
+| 400         | `{"error":"Invalid URL format. URL must be a valid web URL.","example":"Example: /v1/screenshot/url?url=https://example.com"}`                                 |
+| 500         | `{ "error": "Error capturing screenshot. Make sure url exists." }`                                                                                             |
 
-### 2. Get URL for full page screenshot
+### 2. Get url for full page screenshot
 
-> GET /v1/screenshot/fullpage/URL
+> GET /v1/screenshot/fullpage/url
 
-Retrieves a URL for the fulll page screenshot of the passed in URL website.
+Retrieves a url for the fulll page screenshot of the passed in url website.
 
 ### Request
 
-    https://browserbase-work-trial.onrender.com/v1/screenshot/fullpage/URL
+    https://browserbase-work-trial.onrender.com/v1/screenshot/fullpage/url
 
 **cURL Request Example**
 
-    cURL -X GET "https://browserbase-work-trial.onrender.com/v1/screenshot/fullpage/URL?URL=https://example.com/"
+    curl -X GET "https://browserbase-work-trial.onrender.com/v1/screenshot/fullpage/url?url=https://example.com/"
 
 **Query parameters**
 
-**URL** | string (_required_)  
+**url** | string (_required_)  
 Example: https://example.com/  
-URL of website to take screenshot of.
+Url of website to take screenshot of.
 
 ### Responses
 
@@ -76,15 +76,15 @@ URL of website to take screenshot of.
 | Status Code | Response Examples                                                                                                                                                        |
 | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | 200         | `{"message":"Full page screenshot captured successfully","screenshotURL":"https://api-screenshots-browserbase.s3.us-west-2.amazonaws.com/screenshot-1709150937398.png"}` |
-| 400         | `{"error":"URL parameter is required","example":"Example: /v1/screenshot/fullpage/URL?URL=https://example.com"}`                                                         |
-| 400         | `{"error":"Invalid URL format. URL must be a valid web URL.","example":"Example: /v1/screenshot/fullpage/URL?URL=https://example.com"}`                                  |
-| 500         | `{ "error": "Error capturing screenshot. Make sure URL exists." }`                                                                                                       |
+| 400         | `{"error":"URL parameter is required","example":"Example: /v1/screenshot/fullpage/url?url=https://example.com"}`                                                         |
+| 400         | `{"error":"Invalid URL format. URL must be a valid web URL.","example":"Example: /v1/screenshot/fullpage/url?url=https://example.com"}`                                  |
+| 500         | `{ "error": "Error capturing screenshot. Make sure url exists." }`                                                                                                       |
 
 ### 3. Get regular screenshot base64 encoding
 
 > GET /v1/screenshot
 
-Retrieves a base64 encoding of the screenshot of the passed in URL website.
+Retrieves a base64 encoding of the screenshot of the passed in url website.
 
 ### Request
 
@@ -92,13 +92,13 @@ Retrieves a base64 encoding of the screenshot of the passed in URL website.
 
 **cURL Request Example**
 
-    cURL -X GET "https://browserbase-work-trial.onrender.com/v1/screenshot?URL=https://example.com/"
+    curl -X GET "https://browserbase-work-trial.onrender.com/v1/screenshot?url=https://example.com/"
 
 **Query parameters**
 
-**URL** | string (_required_)  
+**url** | string (_required_)  
 Example: https://example.com/  
-URL of website to take screenshot of.
+Url of website to take screenshot of.
 
 ### Responses
 
@@ -109,15 +109,15 @@ URL of website to take screenshot of.
 | Status Code | Response Examples                                                                                                          |
 | ----------- | -------------------------------------------------------------------------------------------------------------------------- |
 | 200         | `{"message":"Screenshot captured successfully","screenshotData":"iVBORw0KGgoAAAANSU...kJggg=="}`                           |
-| 400         | `{"error":"URL parameter is required","example":"Example: /v1/screenshot?URL=https://example.com"}`                        |
-| 400         | `{"error":"Invalid URL format. URL must be a valid web URL.","example":"Example: /v1/screenshot?URL=https://example.com"}` |
-| 500         | `{ "error": "Error capturing screenshot. Make sure URL exists." }`                                                         |
+| 400         | `{"error":"URL parameter is required","example":"Example: /v1/screenshot?url=https://example.com"}`                        |
+| 400         | `{"error":"Invalid URL format. URL must be a valid web URL.","example":"Example: /v1/screenshot?url=https://example.com"}` |
+| 500         | `{ "error": "Error capturing screenshot. Make sure url exists." }`                                                         |
 
 ### 4. Get full page screenshot base64 encoding
 
 > GET /v1/screenshot/fullpage
 
-Retrieves a base64 encoding of the full page screenshot of the passed in URL website.
+Retrieves a base64 encoding of the full page screenshot of the passed in url website.
 
 ### Request
 
@@ -125,13 +125,13 @@ Retrieves a base64 encoding of the full page screenshot of the passed in URL web
 
 **cURL Request Example**
 
-    cURL -X GET "https://browserbase-work-trial.onrender.com/v1/screenshot/fullpage?URL=https://example.com/"
+    curl -X GET "https://browserbase-work-trial.onrender.com/v1/screenshot/fullpage?url=https://example.com/"
 
 **Query parameters**
 
-**URL** | string (_required_)  
+**url** | string (_required_)  
 Example: https://example.com/  
-URL of website to take screenshot of.
+Url of website to take screenshot of.
 
 ### Responses
 
@@ -142,9 +142,9 @@ URL of website to take screenshot of.
 | Status Code | Response Examples                                                                                                                  |
 | ----------- | ---------------------------------------------------------------------------------------------------------------------------------- |
 | 200         | `{"message":"Full page screenshot captured successfully","screenshotData":"iVBORw0KGgoAAAANSU...kJggg=="}`                         |
-| 400         | `{"error":"URL parameter is required","example":"Example: /v1/screenshot/fullpage?URL=https://example.com"}`                       |
-| 400         | `"error":"Invalid URL format. URL must be a valid web URL.","example":"Example: /v1/screenshot/fullpage?URL=https://example.com"}` |
-| 500         | `{ "error": "Error capturing full page screenshot. Make sure URL exists." }`                                                       |
+| 400         | `{"error":"URL parameter is required","example":"Example: /v1/screenshot/fullpage?url=https://example.com"}`                       |
+| 400         | `"error":"Invalid URL format. URL must be a valid web URL.","example":"Example: /v1/screenshot/fullpage?url=https://example.com"}` |
+| 500         | `{ "error": "Error capturing full page screenshot. Make sure url exists." }`                                                       |
 
 ## Shortcomings and Next Steps
 
@@ -182,6 +182,11 @@ While this list isn't exhaustive, these additional customizations could signific
 
 ### Security Measures
 
+- api key?
+- aws authentication?
+- https?
+- rate limiting?
+
 ### Loading Images
 
 On certain larger webpages, not all images fully load before the screenshot is captured. Currently, the API relies on Puppeteer's `{waitUntil: "networkidle2"}` and `"load"`, which entails waiting for no more than two network connections for at least 500 ms and for the load event to fire. While this approach generally does a good job of loading images for a given page, it is not always entirely effective for larger pages.
@@ -192,4 +197,4 @@ However, some webpages feature lazy-loaded images, requiring users to scroll dow
 
 ### Web App Design
 
-The current web app that utilizes the API to display a screenshot of a given URL is not currently optimized for all screen sizes. The web app needs to be updated to adjust styling and positioning based on what size screen is being used. Additionally, the code for the web app needs to be cleaned up and organized more properly.
+The current web app that utilizes the API to display a screenshot of a given url is not currently optimized for all screen sizes. The web app needs to be updated to adjust styling and positioning based on what size screen is being used. Additionally, the code for the web app needs to be cleaned up and organized more properly.
