@@ -6,19 +6,19 @@ Hi! This is a **screenshot API** that can be used to receive either a regular of
 
 You can see a potential use case for this API at the following link: [https://browserbase-webapp.onrender.com/](https://browserbase-webapp.onrender.com/). This web app allows you to input a url and visualize either the regular or full page screenshot in the browser, as well as the API response for that API request.
 
-INPUT IMAGE HERE
+[alt text](screenshot_api_webapp.png)
 
-## Endpoints
+# Endpoints
 
 There are currently four available endpoints, each corresponding to either a regular of full page screenshot that either returns a base64 encoding of the image or a link to the image.
 
-### Get regular screenshot base64 encoding
+## Get regular screenshot base64 encoding
 
 > GET /v1/screenshot
 
 Retrieves a base64 encoding of the screenshot of the passed in url.
 
-**Request**
+### Request
 
     https://browserbase-work-trial.onrender.com/v1/screenshot
 
@@ -28,11 +28,11 @@ Retrieves a base64 encoding of the screenshot of the passed in url.
 
 **Query parameters**
 
-**_url_** | string (_required_)
-Example: https://example.com/
+**_url_** | string (_required_)  
+Example: https://example.com/  
 Url of website to take screenshot of.
 
-**Responses**
+### Responses
 
 **_Content Type_**
 
