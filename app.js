@@ -42,6 +42,9 @@ app.get("/v1/screenshot", async (req, res) => {
 
   try {
     const screenshotData = await captureScreenshotEncoding(url, false);
+    if (!screenshotURL) {
+      return res.status(500).json({ error: "Error capturing screenshot" });
+    }
     res
       .status(200)
       .json({ message: "Screenshot captured successfully", screenshotData });
@@ -70,6 +73,9 @@ app.get("/v1/screenshot/fullpage", async (req, res) => {
 
   try {
     const screenshotData = await captureScreenshotEncoding(url, true);
+    if (!screenshotURL) {
+      return res.status(500).json({ error: "Error capturing screenshot" });
+    }
     res.status(200).json({
       message: "Full-page screenshot captured successfully",
       screenshotData,
@@ -99,6 +105,9 @@ app.get("/v1/screenshot/url", async (req, res) => {
 
   try {
     const screenshotURL = await captureScreenshotURL(url, false);
+    if (!screenshotURL) {
+      return res.status(500).json({ error: "Error capturing screenshot" });
+    }
     res
       .status(200)
       .json({ message: "Screenshot captured successfully", screenshotURL });
@@ -127,6 +136,9 @@ app.get("/v1/screenshot/fullpage/url", async (req, res) => {
 
   try {
     const screenshotURL = await captureScreenshotURL(url, true);
+    if (!screenshotURL) {
+      return res.status(500).json({ error: "Error capturing screenshot" });
+    }
     res.status(200).json({
       message: "Fullpage screenshot captured successfully",
       screenshotURL,
