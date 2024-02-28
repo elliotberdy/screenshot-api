@@ -43,14 +43,18 @@ app.get("/v1/screenshot", async (req, res) => {
   try {
     const screenshotData = await captureScreenshotEncoding(url, false);
     if (!screenshotURL) {
-      return res.status(500).json({ error: "Error capturing screenshot" });
+      return res
+        .status(500)
+        .json({ error: "Error capturing screenshot. Make sure url exists." });
     }
     res
       .status(200)
       .json({ message: "Screenshot captured successfully", screenshotData });
   } catch (error) {
-    console.error("Error capturing screenshot:", error);
-    res.status(500).json({ error: "Error capturing screenshot" });
+    console.error("Error capturing screenshot. Make sure url exists.:", error);
+    res
+      .status(500)
+      .json({ error: "Error capturing screenshot. Make sure url exists." });
   }
 });
 
@@ -74,7 +78,9 @@ app.get("/v1/screenshot/fullpage", async (req, res) => {
   try {
     const screenshotData = await captureScreenshotEncoding(url, true);
     if (!screenshotURL) {
-      return res.status(500).json({ error: "Error capturing screenshot" });
+      return res
+        .status(500)
+        .json({ error: "Error capturing screenshot. Make sure url exists." });
     }
     res.status(200).json({
       message: "Full-page screenshot captured successfully",
@@ -106,14 +112,18 @@ app.get("/v1/screenshot/url", async (req, res) => {
   try {
     const screenshotURL = await captureScreenshotURL(url, false);
     if (!screenshotURL) {
-      return res.status(500).json({ error: "Error capturing screenshot" });
+      return res
+        .status(500)
+        .json({ error: "Error capturing screenshot. Make sure url exists." });
     }
     res
       .status(200)
       .json({ message: "Screenshot captured successfully", screenshotURL });
   } catch (error) {
-    console.error("Error capturing screenshot:", error);
-    res.status(500).json({ error: "Error capturing screenshot" });
+    console.error("Error capturing screenshot. Make sure url exists.:", error);
+    res
+      .status(500)
+      .json({ error: "Error capturing screenshot. Make sure url exists." });
   }
 });
 
@@ -137,7 +147,9 @@ app.get("/v1/screenshot/fullpage/url", async (req, res) => {
   try {
     const screenshotURL = await captureScreenshotURL(url, true);
     if (!screenshotURL) {
-      return res.status(500).json({ error: "Error capturing screenshot" });
+      return res
+        .status(500)
+        .json({ error: "Error capturing screenshot. Make sure url exists." });
     }
     res.status(200).json({
       message: "Fullpage screenshot captured successfully",
