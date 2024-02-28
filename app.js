@@ -1,6 +1,8 @@
 const express = require("express");
 const puppeteer = require("puppeteer");
 const bodyParser = require("body-parser");
+const cors = require("cors"); // Import the cors middleware
+
 const captureScreenshotEncoding = require("./captureScreenshotEncoding");
 const captureScreenshotURL = require("./captureScreenshotURL");
 const isValidUrlFormat = require("./validURL");
@@ -9,6 +11,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(bodyParser.json());
+app.use(cors()); // Add the cors middleware
 
 // Example Usage:
 
@@ -16,6 +19,9 @@ app.use(bodyParser.json());
 
 // GET request to http://localhost:3000/v1/screenshot?url=https://apiflash.com/documentation
 // GET request to http://localhost:3000/v1/screenshot/fullpage?url=https://apiflash.com/documentation
+
+// https://browserbase-work-trial.onrender.com/v1/screenshot/url?url=https://www.apple.com/
+// https://browserbase-work-trial.onrender.com/v1/screenshot/fullpage/url?url=https://www.apple.com/
 
 app.get("/v1/screenshot", async (req, res) => {
   const { url } = req.query;
@@ -121,12 +127,10 @@ app.get("/v1/screenshot/fullpage/url", async (req, res) => {
 
   try {
     const screenshotURL = await captureScreenshotURL(url, true);
-    res
-      .status(200)
-      .json({
-        message: "Fullpage screenshot captured successfully",
-        screenshotURL,
-      });
+    res.status(200).json({
+      message: "Fullpage screenshot captured successfully",
+      screenshotURL,
+    });
   } catch (error) {
     console.error("Error capturing fullpage screenshot:", error);
     res.status(500).json({ error: "Error capturing fullpagge screenshot" });
