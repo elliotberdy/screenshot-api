@@ -2,9 +2,9 @@
 
 ## Summary
 
-Hi! This is a **screenshot API** that can be used to receive either a regular of full page screenshot of a given url as either a base64 encoding or as a url to a .png file stored in an AWS S3 bucket. It is in it's early stages of development still but I hope you get a chance to play around with it!
+Hi! This is a **screenshot API** that can be used to receive either a regular of full page screenshot of a given url returned either as a base64 encoding or as a url to a .png file stored in an AWS S3 bucket. It is in it's early stages of development still but I hope you get a chance to play around with it!
 
-You can see a potential use case for this API at the following link: [https://browserbase-webapp.onrender.com/](https://browserbase-webapp.onrender.com/). This web app allows you to input a url and visualize either the regular or full page screenshot in the browser, as well as the API response for that given request (note: this web app is using the url endpoints of the API).
+You can see a potential use case for this API at the following link: [https://browserbase-webapp.onrender.com/](https://browserbase-webapp.onrender.com/). This web app allows you to input a url and visualize either the regular or full page screenshot in the browser, as well as the API response for that given request (note: this web app is using the endpoints that return a link to the screenshot).
 
 ![Image](screenshot_api_webapp.png)
 
@@ -16,7 +16,7 @@ There are currently four available endpoints, each corresponding to either a reg
 
 > GET /v1/screenshot/url
 
-Retrieves a url to the screenshot of the passed in url.
+Retrieves a url to the screenshot of the passed in url website.
 
 ### Request
 
@@ -49,7 +49,7 @@ Url of website to take screenshot of.
 
 > GET /v1/screenshot/fullpage/url
 
-Retrieves a url to the screenshot of the passed in url.
+Retrieves a url to the fulll page screenshot of the passed in url website.
 
 ### Request
 
@@ -82,7 +82,7 @@ Url of website to take screenshot of.
 
 > GET /v1/screenshot
 
-Retrieves a base64 encoding of the screenshot of the passed in url.
+Retrieves a base64 encoding of the screenshot of the passed in url website.
 
 ### Request
 
@@ -115,7 +115,7 @@ Url of website to take screenshot of.
 
 > GET /v1/screenshot/fullpage
 
-Retrieves a base64 encoding of the full page screenshot of the passed in url.
+Retrieves a base64 encoding of the full page screenshot of the passed in url website.
 
 ### Request
 
