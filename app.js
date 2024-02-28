@@ -42,7 +42,7 @@ app.get("/v1/screenshot", async (req, res) => {
 
   try {
     const screenshotData = await captureScreenshotEncoding(url, false);
-    if (!screenshotURL) {
+    if (!screenshotData) {
       return res
         .status(500)
         .json({ error: "Error capturing screenshot. Make sure url exists." });
@@ -77,7 +77,7 @@ app.get("/v1/screenshot/fullpage", async (req, res) => {
 
   try {
     const screenshotData = await captureScreenshotEncoding(url, true);
-    if (!screenshotURL) {
+    if (!screenshotData) {
       return res
         .status(500)
         .json({ error: "Error capturing screenshot. Make sure url exists." });
