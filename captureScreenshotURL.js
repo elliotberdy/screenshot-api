@@ -20,7 +20,10 @@ async function captureScreenshotURL(url, fullpage = false) {
       height: 959,
     });
 
-    await page.goto(url, { waitUntil: ["networkidle2", "load"] });
+    await page.goto(url, {
+      waitUntil: ["networkidle2", "load"],
+      timeout: 60000,
+    });
 
     let screenshotDataBlob;
     if (fullpage) {
