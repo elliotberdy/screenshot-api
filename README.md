@@ -38,6 +38,10 @@ Url of website to take screenshot of.
 
 > 'application/json'
 
+| Status Code | Response                                                                                                |
+| ----------- | ------------------------------------------------------------------------------------------------------- |
+| 400         | {`"error":"URL parameter is required","example":"Example: /v1/screenshot/url?url=https://example.com"}` |
+
 **200**
 
     {"message":"Screenshot captured successfully","screenshotURL":"https://api-screenshots-browserbase.s3.us-west-2.amazonaws.com/screenshot-1709150937398.png"}
@@ -179,3 +183,17 @@ or
 **500**
 
     { "error": "Error capturing full page screenshot. Make sure url exists." }
+
+## Shortcomings and Next Steps
+
+### Concurrency and Scalability:
+
+### Resource Management
+
+### Error Handling and Logging
+
+### Security Measures
+
+### Lazy Loaded Images
+
+### Web App Design
