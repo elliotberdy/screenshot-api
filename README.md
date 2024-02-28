@@ -38,9 +38,11 @@ Url of website to take screenshot of.
 
 > 'application/json'
 
-| Status Code | Response                                                                                                |
-| ----------- | ------------------------------------------------------------------------------------------------------- |
-| 400         | {`"error":"URL parameter is required","example":"Example: /v1/screenshot/url?url=https://example.com"}` |
+| Status Code | Response                                                                                                                                                                                                                                  |
+| ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 200         | `{"message":"Screenshot captured successfully","screenshotURL":"https://api-screenshots-browserbase.s3.us-west-2.amazonaws.com/screenshot-1709150937398.png"}`                                                                            |
+| 400         | `{"error":"URL parameter is required","example":"Example: /v1/screenshot/url?url=https://example.com"}` or `{"error":"Invalid URL format. URL must be a valid web URL.","example":"Example: /v1/screenshot/url?url=https://example.com"}` |
+| 500         | `{ "error": "Error capturing screenshot. Make sure url exists." }`                                                                                                                                                                        |
 
 **200**
 
