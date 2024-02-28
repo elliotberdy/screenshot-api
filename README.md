@@ -24,11 +24,11 @@ Retrieves a url for the screenshot of the passed in url website.
 
     https://browserbase-work-trial.onrender.com/v1/screenshot/url
 
-**cURL Request Example**
+##### **cURL Request Example**
 
     curl -X GET "https://browserbase-work-trial.onrender.com/v1/screenshot/url?url=https://example.com/"
 
-**Query parameters**
+##### **Query parameters**
 
 **url** | string (_required_)  
 Example: https://example.com/  
@@ -36,7 +36,7 @@ Url of website to take screenshot of.
 
 #### Responses
 
-**Content Type**
+##### **Content Type**
 
 > 'application/json'
 
