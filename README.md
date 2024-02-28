@@ -53,7 +53,7 @@ Url of website to take screenshot of.
 
 Retrieves a url for the fulll page screenshot of the passed in url website.
 
-#### Request
+### Request
 
     https://browserbase-work-trial.onrender.com/v1/screenshot/fullpage/url
 
@@ -67,7 +67,7 @@ Retrieves a url for the fulll page screenshot of the passed in url website.
 Example: https://example.com/  
 Url of website to take screenshot of.
 
-#### Responses
+### Responses
 
 **Content Type**
 
@@ -86,7 +86,7 @@ Url of website to take screenshot of.
 
 Retrieves a base64 encoding of the screenshot of the passed in url website.
 
-#### Request
+### Request
 
     https://browserbase-work-trial.onrender.com/v1/screenshot
 
@@ -100,7 +100,7 @@ Retrieves a base64 encoding of the screenshot of the passed in url website.
 Example: https://example.com/  
 Url of website to take screenshot of.
 
-#### Responses
+### Responses
 
 **Content Type**
 
@@ -119,7 +119,7 @@ Url of website to take screenshot of.
 
 Retrieves a base64 encoding of the full page screenshot of the passed in url website.
 
-#### Request
+### Request
 
     https://browserbase-work-trial.onrender.com/v1/screenshot/fullpage
 
@@ -133,7 +133,7 @@ Retrieves a base64 encoding of the full page screenshot of the passed in url web
 Example: https://example.com/  
 Url of website to take screenshot of.
 
-#### Responses
+### Responses
 
 **Content Type**
 
