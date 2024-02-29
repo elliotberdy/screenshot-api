@@ -1,5 +1,13 @@
 # Elliot Berdy Screenshot API
 
+## Table of Contents
+
+[Summary](#summary)
+[Endpoints](#endpoints)
+[Shortcomings and Next Steps](#shortcomings-and-next-steps)
+[The Development Story](#the-development-story)
+[Thank You!](#thank-you!)
+
 ## Summary
 
 Hi! This is a **screenshot API** that can be used to receive either a regular of full page screenshot of a given url returned either as a base64 encoding or as a url to a .png file stored in an AWS S3 bucket. It is in it's early stages of development still but I hope you get a chance to play around with it!
