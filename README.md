@@ -346,7 +346,7 @@ I decided to "hackathon" the creation of this web app and therefore in the inter
 
 I used the following template: https://nextjstemplates.com/templates/saas-ui
 
-I then spent some time getting familiar with the code and deciding which parts I wanted to keep and which I wanted to get rid of. While the template made things easier in terms of not having to make everything from scratch, making sure everything was set up properly and learning the code base also took a decent chunk of time. Therefore, I am not sure I would for sure go that route again in the future, especially if I had more time.
+I then spent some time getting familiar with the code and deciding which parts I wanted to keep and which I wanted to get rid of. While the template made things easier in terms of not having to make everything from scratch, making sure everything was set up properly and learning the code base and technologies the code used also took a decent chunk of time. Therefore, I am not sure I would for sure go that route again in the future, especially if I had more time.
 
 That being said, I started coding away and adding elements and features to the web app. Some notable features that I added:
 
