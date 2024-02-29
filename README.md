@@ -260,7 +260,9 @@ I came to the conclusion that ultimately storing the image somewhere and returni
 
 Puppeteer also has an easy way of taking a full page screenshot, so I went ahead and created another endpoint that would return the full page screenshot in the base64 encoding as well.
 
-Once I got that working, I was left with two API endpoints that when given a URL, could return the base64 encoding of a regular or full page screenshot of that webpage.
+The last thing I wanted to include in the "MVP" was some basic error checking. I wanted to make sure that a url was always provided and that the url was properly formatted. In JavaScript, if you create a new URL object with the passed in URL, it will throw an error if the URL format is not valid. Therefore, I used that strategy to guarantee that the URL was at least formatted properly. I also threw an error if there was an error while taking the screenshot or if the URL did not exist.
+
+Once I got all of that working, I was left with two API endpoints that when given a URL, could return the base64 encoding of a regular or full page screenshot of that webpage.
 
 ### Deploying the API
 
@@ -353,6 +355,7 @@ That being said, I started coding away and adding elements and features to the w
 - displaying the screenshot once it has been received
 - loading signs on the buttons showing that the screenshot was on its way (the API has to wait for the page to load which takes some time)
 - code box that displays the API response
+- error handling - if the user inputs an invalid URL or if the API returns an error, the web app displays an error icon
 
 The web app hasn't been fully optimized for every screen size, although I believe it looks good on a normal laptop screen and looks good enough on mobile screens and larger screens. This could be an area of improvement in the future though.
 
@@ -364,8 +367,14 @@ As mentioned earlier, the web app can be viewed here: [https://screenshot-api-ap
 
 ![Image](screenshot_api_webapp.png)
 
+and this image shows what happens if you input an invalid URL.
+
+![Image](screenshot_api_bad_url.png)
+
 ### Documentation
 
 The last step in this process was creating the documentation for the API and documenting this entire process.
+
+## Thank You!
 
 Thanks for reading - I hope you enjoyed!
