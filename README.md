@@ -6,7 +6,7 @@ Hi! This is a **screenshot API** that can be used to receive either a regular of
 
 The screenshot API uses Puppeteer to launch a browser instance, wait for the page and images to load, and then takes the screenshot.
 
-You can see a potential use case for this API at the following link: [https://browserbase-webapp.onrender.com/](https://browserbase-webapp.onrender.com/). This web app allows you to input a url and visualize either the regular or full page screenshot in the browser, as well as the API response for that given request (note: this web app is using the endpoints that return a link to the screenshot).
+You can see a potential use case for this API at the following link: [https://screenshot-api-app.onrender.com/](https://screenshot-api-app.onrender.com/). This web app allows you to input a url and visualize either the regular or full page screenshot in the browser, as well as the API response for that given request (note: this web app is using the endpoints that return a link to the screenshot).
 
 ![Image](screenshot_api_webapp.png)
 
