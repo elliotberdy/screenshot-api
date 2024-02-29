@@ -57,11 +57,11 @@ Retrieves a url for the fulll page screenshot of the passed in url website.
 
 ### Request
 
-https://browserbase-work-trial.onrender.com/v1/screenshot/fullpage/url
+    https://browserbase-work-trial.onrender.com/v1/screenshot/fullpage/url
 
 **cURL Request Example**
 
-curl -X GET "https://browserbase-work-trial.onrender.com/v1/screenshot/fullpage/url?url=https://example.com/"
+    curl -X GET "https://browserbase-work-trial.onrender.com/v1/screenshot/fullpage/url?url=https://example.com/"
 
 **Query parameters**
 
@@ -92,11 +92,11 @@ Retrieves a base64 encoding of the screenshot of the passed in url website.
 
 ### Request
 
-https://browserbase-work-trial.onrender.com/v1/screenshot
+    https://browserbase-work-trial.onrender.com/v1/screenshot
 
 **cURL Request Example**
 
-curl -X GET "https://browserbase-work-trial.onrender.com/v1/screenshot?url=https://example.com/"
+    curl -X GET "https://browserbase-work-trial.onrender.com/v1/screenshot?url=https://example.com/"
 
 **Query parameters**
 
@@ -127,11 +127,11 @@ Retrieves a base64 encoding of the full page screenshot of the passed in url web
 
 ### Request
 
-https://browserbase-work-trial.onrender.com/v1/screenshot/fullpage
+    https://browserbase-work-trial.onrender.com/v1/screenshot/fullpage
 
 **cURL Request Example**
 
-curl -X GET "https://browserbase-work-trial.onrender.com/v1/screenshot/fullpage?url=https://example.com/"
+    curl -X GET "https://browserbase-work-trial.onrender.com/v1/screenshot/fullpage?url=https://example.com/"
 
 **Query parameters**
 
