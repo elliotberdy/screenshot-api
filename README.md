@@ -214,7 +214,7 @@ However, some webpages feature lazy-loaded images, requiring users to scroll dow
 
 ### Web App Design
 
-The current web app that utilizes the API to display a screenshot of a given url is not currently optimized for all screen sizes. The web app needs to be updated to adjust styling and positioning based on what size screen is being used. Additionally, the code for the web app needs to be cleaned up and organized more properly.
+The current web app that utilizes the API to display a screenshot of a given url is not currently optimized for all screen sizes. The web app needs to be updated to adjust styling and positioning based on what size screen is being used.
 
 ## The Development Story
 
