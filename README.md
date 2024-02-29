@@ -210,13 +210,13 @@ The current web app that utilizes the API to display a screenshot of a given url
 
 ## The Development Story
 
-In this section, I am aiming to give insight into the development process and how and why I made certain decisions and tradeoffs. To start off, we will assume I was given the vague task of "build a screenshot API". The API should be given a URL and return a screenshot and should not used a prebuilt screenshot API :)
+In this section, I am aiming to give insight into the development process and how and why I made certain decisions and tradeoffs. To start off, we will assume I was given the basic task of "build a screenshot API". The API should be given a URL and return a screenshot and should not use a prebuilt screenshot API :)
 
 ### Choosing a programmable browser library
 
-The first task I started researching and thinking about was what library I wanted to use for taking the screenshot. I had heard about a couple of libraries for programmable browsers, but I did not know much about them so I started by researching those.
+The first task I started researching and thinking about was what library I wanted to use for taking the screenshot. I had heard about a couple of libraries for programmable browsers, but I did not know much about them so I started by researching about them.
 
-I came across four popular options: Selenium, Playwright, Cypress, and Puppeteer. Below is a simple table that shows some of the pros and cons I found for each one.
+I came across four popular options: Selenium, Playwright, Cypress, and Puppeteer. Below is a table I put together that shows some strengths and considerations about each one.
 
 | Tool               | Strengths                                                                                                                                                                               | Considerations                                                                                                                                                                                                                                                   |
 | ------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -229,7 +229,7 @@ After doing this research, I came to the conclusion that I wanted to use Puppete
 
 ### Building a simple API that can take a screenshot
 
-The next step was to get familiar with Puppeteer and build a really simple version of the API - an MVP if you will. I found the following simple code to open a web page and take a screenshot of it:
+Once I had chosen to use Puppeteer, the next step was to get familiar with it and build a really simple version of the API - an MVP if you will. I found the following simple code to open a web page and take a screenshot of it:
 
     const puppeteer = require('puppeteer');
     (async () => { const browser = await puppeteer.launch();
@@ -240,9 +240,9 @@ The next step was to get familiar with Puppeteer and build a really simple versi
 
 I used this code to set up an API endpoint that when given a url, essentially ran this code leading to a screenshot of the webpage being stored locally.
 
-The next step was having the API return the image to the user instead of saving it locally. The two options that came to mind of doing this were to either return some sort of encoding of the image, or to store the image somewhere and return a URL to that stored image.
+The next step was having the API return the image to the user instead of saving it locally. There were two ways I thought about going about implementing this. One was to return some sort of encoding of the image, and the other was to store the image somewhere and return a URL to that stored image.
 
-Below is a table demonstrating the pros and cons I came up with:
+Below is a table demonstrating the pros and cons I came up with for each:
 
 | Pros of base64                             | Cons of base64                                 |
 | ------------------------------------------ | ---------------------------------------------- |
@@ -258,13 +258,13 @@ Below is a table demonstrating the pros and cons I came up with:
 
 I came to the conclusion that ultimately storing the image somewhere and returning a URL to it would be better overall, but Puppeteer makes it really easy to receive the screenshot in a base64 encoding, so I went with that for simplicity at this point with the intention of implementing the URL version later down the line.
 
-Puppeteer also has an easy way of taking a full page screenshot, and knowing a user may want that option, I created another endpoint that would return the full page screenshot in the base64 encoding as well.
+Puppeteer also has an easy way of taking a full page screenshot, so I went ahead and created another endpoint that would return the full page screenshot in the base64 encoding as well.
 
-Once I got that working, I was left with two API endpoints that when given a URL, could return the base64 encoding of a screenshot of that webpage.
+Once I got that working, I was left with two API endpoints that when given a URL, could return the base64 encoding of a regular or full page screenshot of that webpage.
 
 ### Deploying the API
 
-Now that I had a basic functional API, my next step was to deploy the API. My next decision was to decide whether I wanted to use a Platform as a Service (PaaS) or an Infrastructure as a service (IaaS). Below is a table detailing the pros and cons I came up with after some research:
+Now that I had a basic functional API, my next step was to deploy the API. My next decision was to decide whether I wanted to use a Platform as a Service (PaaS) or Infrastructure as a service (IaaS). Below is a table detailing the pros and cons I came up with after some research:
 
 | Aspect | Infrastructure-as-a-Service (IaaS)                                                                                                                                                                     | Platform-as-a-Service (PaaS)                                                                                                                                                             |
 | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -277,9 +277,9 @@ Now that I had a basic functional API, my next step was to deploy the API. My ne
 |        | - Scalability Management: Requires manual management of scalability aspects, such as provisioning additional resources and load balancing, which may be challenging to optimize and scale efficiently. | - Customization Constraints: May impose constraints on application customization and configuration, limiting the ability to tailor the environment to specific requirements.             |
 |        | - Cost Considerations: While scalable, costs can increase with resource usage, and careful monitoring and optimization are needed to control expenses effectively.                                     | - Portability: Adapting applications to run on different PaaS platforms or migrating to alternative platforms may be challenging due to vendor-specific configurations and dependencies. |
 
-After weighing the pros and cons, I decided to go with a PaaS. Given the scope of the project, I figured that simplicity, rapid development, and cost effectiveness were more important to me than the flexibility and scalability that an IaaS would provide.
+After weighing the pros and cons, I decided to go with a PaaS. Given the scope of the project, I figured that simplicity, rapid development, and cost effectiveness were more important to me than the flexibility and scalability that IaaS would provide.
 
-I briefly looked into various PaaS options, however I had already used Render on multiple occasions for other projects and new how to use it and that it worked well, so I decided to use it.
+I briefly looked into various PaaS options, however I had previously used Render on multiple occasions for other projects and new how to use it and that it worked well, so I decided to use it for the API.
 
 This left me with a deployed API that could be given a URL and return the base64 encoding of either a regular or full page screenshot of the website!
 
@@ -290,13 +290,13 @@ While the deployed API was working, I noticed that for some websites not all of 
 - **networidle2** - wait for no more than two network connections for at least 500 ms before moving on to the next line of code
 - **load** - ensure that all resources, including scripts, stylesheets, and images, have been fully loaded before moving on to the next line of code
 
-This seemed to mostly solve the issue except for really large webpages and webpages that used "lazy load," which means the user must scroll down to the image to get it to start loading. I address this more later on in the shortcomings and next steps section, but I seemed to be getting the same results as the Chrome developer tool screenshot and therefore decided that this was a good enough benchmark at least for the time being.
+This seemed to mostly solve the issue except for really large webpages and webpages that used "lazy load," which means the user must scroll down to the image for the image to start loading. I address this more earlier on in the shortcomings and next steps section, but I seemed to be getting the same results as the Chrome developer tool screenshot and therefore decided that this was a good enough benchmark at least for the time being.
 
 ### Store the screenshot somewhere and return a URL
 
 I decided the next step would be to implement a version of the API that would return a URL to the screenshot instead of returning the base64 encoding of the image.
 
-Before implementing this, I had to decide how and where I would store the images. Below are the options I cam up with and their pros and cons:
+Before implementing this, I had to decide how and where I would store the images. Below are the options I came up with and their pros and cons:
 
 1. **Store images on the server**
 
@@ -332,26 +332,27 @@ I ultimately decided to go with a cloud based solution as they are easy to scale
 
 Once I had made that decision, I began implementing. I created an S3 bucket for storing the images and created two new API endpoints: one that returns a URL to a regular screenshot and one that returns a URL to a full page screenshot.
 
-The API would take the screenshot and upload the binary encoding of it to the bucket. In return, AWS S3 would give a URL to the image which would then be given to the user.
+The API takes the screenshot and uploads the binary encoding of it to the bucket. In return, AWS S3 gives a URL to the image which is then given to the user.
 
 By the end of this stage, I had a deployed API that was able to return either a base64 encoding or a URL to a regular or full page screenshot of a given URL.
 
 ### Build a web app that utilizes the API
 
-Given that I had a working API (despite scalability being a concern), I decided to build a web app that utilizes the API for future potential users and to help continue to develop my frontend skills. I decided this app would be one in which the user could input a URL and then visual either the regular or full page screenshot of that website.
+Given that I had a working API (despite scalability being a concern), I decided to build a web app that utilizes the API for future potential users to see and to help continue to develop my frontend skills. I decided this app would be one in which the user could input a URL and then visualize either the regular or full page screenshot of that website, as well as the corresponding API response.
 
-I decided to "hackathon" the creation of this web app and therefore decided to use a template as a starting point. This way I didn't have to build everything from scratch and would have some formatting and styling premade for me.
+I decided to "hackathon" the creation of this web app and therefore in the interest of time decided to use a template as a starting point. This way I didn't have to build everything from scratch and would have some formatting and styling already done for me.
 
 I used the following template: https://nextjstemplates.com/templates/saas-ui
 
-I then spent some time getting familiar with the code and deciding which parts I wanted to keep and which I wanted to get rid of. While the template made things easier in terms of not having to make everything from scratch, making sure everything was set up properly and learning the code base also took a chunk of time and so I am not sure I would for sure go that route again in the future, especially if I had more time.
+I then spent some time getting familiar with the code and deciding which parts I wanted to keep and which I wanted to get rid of. While the template made things easier in terms of not having to make everything from scratch, making sure everything was set up properly and learning the code base also took a decent chunk of time. Therefore, I am not sure I would for sure go that route again in the future, especially if I had more time.
 
-That being said, I started coding away and adding elements and features for the web app. Some notable features that I added:
+That being said, I started coding away and adding elements and features to the web app. Some notable features that I added:
 
 - an input field for the user to type in the URL
-- buttons to either get the regular or full page screenshot
+- buttons to trigger the API for either a regular or full page screenshot
 - displaying the screenshot once it has been received
 - loading signs on the buttons showing that the screenshot was on its way (the API has to wait for the page to load which takes some time)
+- code box that displays the API response
 
 The web app hasn't been fully optimized for every screen size, although I believe it looks good on a normal laptop screen and looks good enough on mobile screens and larger screens. This could be an area of improvement in the future though.
 
@@ -359,10 +360,12 @@ After I had gotten the web app to a place I was happy with, the next two steps w
 
 By the end of this stage I had a working screenshot API and a web app that looked nice and was able to utilize the API to display the screenshot!
 
-As mentioned earlier, the web app can be viewed here: [https://screenshot-api-app.onrender.com/](https://screenshot-api-app.onrender.com/).
+As mentioned earlier, the web app can be viewed here: [https://screenshot-api-app.onrender.com/](https://screenshot-api-app.onrender.com/). This image shows the screenshot and API response for https://apple.com.
 
 ![Image](screenshot_api_webapp.png)
 
 ### Documentation
 
-The last step in this process was creating the documentation for the API and documenting this entire process. Hopefully it speaks for itself!
+The last step in this process was creating the documentation for the API and documenting this entire process.
+
+Thanks for reading - I hope you enjoyed!
