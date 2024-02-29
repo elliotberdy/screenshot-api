@@ -2,11 +2,15 @@
 
 ## Table of Contents
 
-[Summary](#summary)  
-[Endpoints](#endpoints)  
-[Shortcomings and Next Steps](#shortcomings-and-next-steps)  
-[The Development Story](#the-development-story)  
-[Thank You!](#thank-you!)
+### [Summary](#summary)
+
+### [Endpoints](#endpoints)
+
+### [Shortcomings and Next Steps](#shortcomings-and-next-steps)
+
+### [The Development Story](#the-development-story)
+
+### [Thank You!](#thank-you!)
 
 ## Summary
 
